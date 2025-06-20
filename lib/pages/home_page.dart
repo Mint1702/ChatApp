@@ -11,10 +11,17 @@ class HomePage extends StatelessWidget {
   //chat and auth services
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("HomePage")),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(
+        title: const Text("HomePage"),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
+      ),
       drawer: MyDrawer(),
       body: _buildUserList(),
     );
@@ -63,7 +70,11 @@ class HomePage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChatPage(receiverEmail: userData["email"]),
+              builder:
+                  (context) => ChatPage(
+                    receiverEmail: userData["email"],
+                    receiverID: userData["uid"],
+                  ),
             ),
           );
         },
